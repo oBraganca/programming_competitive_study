@@ -1,3 +1,9 @@
+/*
+ * UVa 100 - Max cycle
+ *
+ * Thayllon Bragança
+ * thayllonbraganca@gmail.com
+ * */
 #include <stdio.h>
 
 int countBetweenCycleLenght(int n){

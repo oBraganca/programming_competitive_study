@@ -1,6 +1,9 @@
-//
-// Created by obraganca on 11/14/24.
-//
+/*
+ * UVa 272 - TEX
+ *
+ * Thayllon Bragança
+ * thayllonbraganca@gmail.com
+ * */
 #include <stdio.h>
 
 int main(){
