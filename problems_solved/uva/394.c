@@ -32,23 +32,6 @@ typedef struct{
     int c[12];
 }arr;
 
-void calc(arr *ar){
-    int C =ar->tb;
-    ar->c[ar->n] = C;
-
-    for(int i=ar->n-1; i >=0; i--){
-        C*=(ar->t[i]-ar->d[i]+1);
-        ar->c[i]=C;
-    }
-
-    ar->c[0] = ar->bm;
-
-    for(int i = 1;i<ar->n; i++){
-        ar->c[0]-=ar->c[i]*ar->d[i-1];
-    }
-
-}
-
 int main(){
     int n=0, nr=0;
 
@@ -58,10 +41,17 @@ int main(){
     for(int i =0; i<n; i++){
         scanf("%s%d%d%d", ar[i].an, &ar[i].bm,&ar[i].tb,&ar[i].n);
         for(int j=0; j<ar[i].n; j++){
-            scanf("%d", &ar[i].t[j]);
             scanf("%d", &ar[i].d[j]);
+            scanf("%d", &ar[i].t[j]);
+
         }
-        calc(&ar[i]);
+
+        ar[i].c[ar[i].n] = ar[i].tb;
+        ar[i].c[0] = ar[i].bm;
+        for(int j=ar[i].n-1; j>=1; j--){
+
+            ar[i].c[j] = ar[i].c[j+1]*(ar[i].t[j] - ar[i].d[j] +1);
+        }
     }
 
     char nm[10];
@@ -82,11 +72,11 @@ int main(){
         }
         printf("%s[", ar[a].an);
         scanf("%d",&an);
-        tt+=ar->c[1]*(an-ar->d[0]);
         printf("%d",an);
+        tt += ar[a].c[ar[a].n]*(an-ar[a].d[0]);
         for(int j=1;j<ar[a].n; j++){
             scanf("%d",&an);
-            tt+=ar->c[j+1]*(an-ar->d[j]);
+            tt += ar[a].c[j]*(an-ar[a].d[j]);
             printf(", %d",an);
         }
         printf("] = %lu\n",tt);
